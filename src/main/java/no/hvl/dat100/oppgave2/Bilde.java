@@ -4,8 +4,6 @@ import no.hvl.dat100.common.TODO;
 import no.hvl.dat100.oppgave1.Innlegg;
 
 public class Bilde extends Tekst {
-
-	// TODO - objekt variable
 	private String image_url;
 	
 	protected Bilde() { 

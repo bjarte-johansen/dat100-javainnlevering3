@@ -12,14 +12,14 @@ public abstract class Innlegg {
 	protected Innlegg() {} // hide default constructor
 	
 	protected Innlegg(int id, String bruker, String dato) {
-		this.id = id;
-		this.user = bruker;
-		this.date = dato;
-		this.type = "TEKST";
+		this(id, bruker, dato, 0);
 	}
 
 	protected Innlegg(int id, String bruker, String dato, int likes) {
-		this(id, bruker, dato);
+		this.id = id;
+		this.type = "TEKST";		
+		this.user = bruker;
+		this.date = dato;
 		this.likes = likes;
 	}
 	
@@ -38,7 +38,7 @@ public abstract class Innlegg {
 	public void setLikes(int likes) { this.likes = likes; }
 	public void doLike () { likes++; }
 	
-	public boolean erLik(Innlegg innlegg) {	return this.id == innlegg.id; }
+	public boolean erLik(Innlegg post) {	return this.id == post.id; }
 	
 	@Override
 	public String toString() {
