@@ -3,75 +3,56 @@ package no.hvl.dat100.oppgave1;
 import no.hvl.dat100.common.TODO;
 
 public abstract class Innlegg {
+	private int id;
+	private String type;
+	private String user;
+	private String date;
+	private int likes;
 	
-	// TODO - deklarering av objektvariable
+	protected Innlegg() {} // hide default constructor
 	
-	public Innlegg() {
-		
-	}
-	
-	public Innlegg(int id, String bruker, String dato) {
-
-		// TODO 
-		throw new UnsupportedOperationException(TODO.constructor("Innlegg"));
+	protected Innlegg(int id, String bruker, String dato) {
+		this.id = id;
+		this.user = bruker;
+		this.date = dato;
+		this.type = "TEKST";
 	}
 
-	public Innlegg(int id, String bruker, String dato, int likes) {
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.constructor("Innlegg"));
-	}
-	
-	public String getBruker() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-	}
-
-	public void setBruker(String bruker) {
-		throw new UnsupportedOperationException(TODO.method());
-	}
-
-	public String getDato() {
-		throw new UnsupportedOperationException(TODO.method());
-		
-	}
-
-	public void setDato(String dato) {
-		throw new UnsupportedOperationException(TODO.method());
-	}
-
-	public int getId() {
-		throw new UnsupportedOperationException(TODO.method());
-
-	}
-
-	public int getLikes() {
-		throw new UnsupportedOperationException(TODO.method());
-
+	protected Innlegg(int id, String bruker, String dato, int likes) {
+		this(id, bruker, dato);
+		this.likes = likes;
 	}
 	
-	public void doLike () {
-		throw new UnsupportedOperationException(TODO.method());
-	}
+	public String getType() { return type; }
+	public void setType(String type) { this.type = type; }
 	
-	public boolean erLik(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+	public String getBruker() { return user; }
+	public void setBruker(String bruker) { user = bruker; }
 
-	}
+	public String getDato() { return date; }
+	public void setDato(String dato) { date = dato;	}
+
+	public int getId() { return id; }
+
+	public int getLikes() { return likes; }
+	public void setLikes(int likes) { this.likes = likes; }
+	public void doLike () { likes++; }
+	
+	public boolean erLik(Innlegg innlegg) {	return this.id == innlegg.id; }
 	
 	@Override
 	public String toString() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-				
+		String fmt = "%d\n%s\n%s\n%d\n";
+		return String.format(fmt, id, user, date, likes);				
 	}
 	
 	// Metoden nedenfor er kun for valgfri oppgave 6
 	public String toHTML() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-				
+		var sb = new StringBuilder(1024);
+		sb.append(String.format("<p class=\"id\">%d</p>\n", id));
+		sb.append(String.format("<p class=\"user\">%s</p>\n", user));
+		sb.append(String.format("<p class=\"date\">%s</p>\n", date));
+		sb.append(String.format("<p class=\"likes\">&#128077; %d</p>\n", likes));
+		return sb.toString();
 	}
 }
