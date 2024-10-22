@@ -17,10 +17,9 @@ public class WebServer {
 
 			int n = Configuration.N;
 			
-			while (n>0) {
+			while (n > 0) {				
+				server.process();			
 				
-				server.process();
-			
 				n--;
 			}
 			

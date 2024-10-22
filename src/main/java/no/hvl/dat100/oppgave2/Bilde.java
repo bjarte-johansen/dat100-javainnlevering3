@@ -14,14 +14,15 @@ public class Bilde extends Tekst {
 	
 	public Bilde(int id, String bruker, String dato, String tekst, String url) {
 		super(id, bruker, dato, tekst);
+		setType("BILDE");		
+		
 		image_url = url;
-		setType("BILDE");
 	}
 
 	public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
 		this(id, bruker, dato, tekst, url);
-		super.setLikes(likes);
-		image_url = url;
+		
+		setLikes(likes);
 	}
 	
 	public String getUrl() {
@@ -34,8 +35,9 @@ public class Bilde extends Tekst {
 
 	@Override
 	public String toString() {
-		String tmp = super.toString();
-		return tmp + image_url + "\n";
+		return 
+			super.toString() +
+			image_url + "\n";
 	}
 	
 	public String fixGithubImageUrl(String s) {
