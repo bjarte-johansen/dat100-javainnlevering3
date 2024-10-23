@@ -1,5 +1,7 @@
 package no.hvl.dat100.oppgave3;
 
+import java.util.Arrays;
+
 import no.hvl.dat100.common.TODO;
 import no.hvl.dat100.oppgave1.*;
 
@@ -35,7 +37,7 @@ public class Blogg {
 	}
 
 	public boolean finnes(Innlegg post) {
-		return finnInnlegg(post) != -1;
+		return finnInnlegg(post) > -1;
 	}
 
 	public boolean ledigPlass() {
@@ -66,15 +68,15 @@ public class Blogg {
 	// valgfrie oppgaver nedenfor
 	
 	public void utvid() {
-		posts = java.util.Arrays.copyOf(posts, posts.length * 2);
+		posts = Arrays.copyOf(posts, posts.length * 2);
 	}
 	
-	public boolean leggTilUtvid(Innlegg innlegg) {
+	public boolean leggTilUtvid(Innlegg post) {
 		if (!ledigPlass()) {
 			utvid();
 		}
 		
-		return leggTil(innlegg);		
+		return leggTil(post);		
 	}
 	
 	public boolean slett(Innlegg post) {
@@ -83,10 +85,7 @@ public class Blogg {
 			return false;
 		}
 
-		// copy elements to the left from found index
-		for (int i = found_index; i < length - 1; i++) {
-			posts[i] = posts[i + 1];
-		}
+		System.arraycopy(posts, found_index + 1, posts, found_index, length - found_index - 1);
 
 		posts[--length] = null;
 		
@@ -95,13 +94,13 @@ public class Blogg {
 
 	public int[] search(String keyword) {
 		var indexes = new int[length];
-		int indexes_length = 0;
+		int found = 0;
 		for (int i = 0; i < length; i++) {
 			if (posts[i].toString().contains(keyword)) {
-				indexes[indexes_length++] = i;
+				indexes[found++] = i;
 			}
 		}
-		return java.util.Arrays.copyOf(indexes, indexes_length);
+		return Arrays.copyOf(indexes, found);
 
 	}
 }
