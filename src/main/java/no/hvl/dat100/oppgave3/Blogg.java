@@ -45,10 +45,7 @@ public class Blogg {
 	}
 	
 	public boolean leggTil(Innlegg post) {
-		if (!ledigPlass())
-			throw new RuntimeException("Tabellen er full");
-		
-		if(finnes(post)) {
+		if (!ledigPlass() || finnes(post)) {
 			return false;
 		}
 		
