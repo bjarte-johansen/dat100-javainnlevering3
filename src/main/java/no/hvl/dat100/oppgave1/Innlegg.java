@@ -17,7 +17,7 @@ public abstract class Innlegg {
 
 	protected Innlegg(int id, String bruker, String dato, int likes) {
 		this.id = id;
-		this.type = "TEKST";		
+		this.type = "FEIL";		
 		this.user = bruker;
 		this.date = dato;
 		this.likes = likes;

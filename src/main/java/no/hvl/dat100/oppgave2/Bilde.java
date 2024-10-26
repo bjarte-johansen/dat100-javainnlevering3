@@ -16,7 +16,6 @@ public class Bilde extends Tekst {
 
 	public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
 		super(id, bruker, dato, likes, tekst);		
-
 		setType("BILDE");
 		image_url = url;		
 	}

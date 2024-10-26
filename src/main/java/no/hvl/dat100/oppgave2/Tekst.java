@@ -12,12 +12,12 @@ public class Tekst extends Innlegg {
 	}
 	
 	public Tekst(int id, String bruker, String dato, String tekst) {
-		super(id, bruker, dato);
-		this.text = tekst;
+		this(id, bruker, dato, 0, tekst);
 	}
 	
 	public Tekst(int id, String bruker, String dato, int likes, String tekst) {
 		super(id, bruker, dato, likes);
+		this.setType("TEKST");
 		this.text = tekst;
 	}
 	
