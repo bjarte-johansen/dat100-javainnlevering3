@@ -64,10 +64,12 @@ public class Blogg {
 
 	// valgfrie oppgaver nedenfor
 	
+	// reallocate memory
 	public void utvid() {
 		posts = Arrays.copyOf(posts, posts.length * 2);
 	}
 	
+	// append, rellocate if required
 	public boolean leggTilUtvid(Innlegg post) {
 		if (!ledigPlass()) {
 			utvid();
@@ -81,14 +83,21 @@ public class Blogg {
 		if (found_index == -1) {
 			return false;
 		}
-
-		System.arraycopy(posts, found_index + 1, posts, found_index, length - found_index - 1);
-
-		posts[--length] = null;
+		
+		// without preserving order, fast delete, slower unordered search
+		// we accept this as we dont know if data was ordered to begin with
+		--length;
+		posts[found_index] = posts[length];
+		posts[length] = null;
+		
+		// order-preserving methods suitable for fast lookups but slow removal
+		//System.arraycopy(posts, found_index + 1, posts, found_index, length - found_index - 1);
+		//posts[--length] = null;			
 		
 		return true;
 	}
 
+	// case sensitive search
 	public int[] search(String keyword) {
 		var indexes = new int[length];
 		int found = 0;
@@ -97,7 +106,7 @@ public class Blogg {
 				indexes[found++] = i;
 			}
 		}
+		
 		return Arrays.copyOf(indexes, found);
-
 	}
 }
